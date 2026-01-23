@@ -1,0 +1,257 @@
+/* 기본 폰트 및 배경 설정 */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap");
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f9f7f2;
+  font-family: "Noto Sans KR", sans-serif;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#app {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#intro-wrap {
+  display: flex;
+  align-items: center;
+}
+
+/* 플로어 가이드 오브제 */
+.floor-guide {
+  position: absolute;
+  left: -220px;
+  top: 40px;
+  width: 140px;
+  padding: 15px;
+  background: #fff;
+  border: 3px solid #333;
+  transform: rotate(-3deg);
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.05);
+  z-index: 5;
+  transition: opacity 0.5s;
+}
+
+.floor-guide strong {
+  display: block;
+  border-bottom: 2px solid #333;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.floor-guide ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+}
+
+.floor-guide li {
+  margin-bottom: 6px;
+  color: #777;
+}
+
+.floor-guide li.target {
+  color: #ff3333;
+  font-weight: bold;
+  border-bottom: 1px solid #ff3333;
+  display: inline-block;
+}
+
+/* 엘리베이터 구조 */
+.elevator-outer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 1s;
+}
+
+.floor-display {
+  background-color: #333;
+  color: #ff3333;
+  padding: 5px 20px;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  min-width: 45px;
+  text-align: center;
+  border: 2px solid #555;
+}
+
+.elevator-box {
+  width: 260px;
+  height: 380px;
+  border: 4px solid #333;
+  background-color: #d1d1d1;
+  position: relative;
+  overflow: hidden;
+}
+
+.door {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background-color: #bdc3c7;
+  border: 1px solid #95a5a6;
+  transition: transform 1.2s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  z-index: 10;
+}
+
+.door-left {
+  left: 0;
+  border-right: 1px solid #333;
+}
+
+.door-right {
+  right: 0;
+  border-left: 1px solid #333;
+}
+
+/* 엘리베이터 내부 */
+.inside {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.nokya-placeholder {
+  width: 70px;
+  height: 90px;
+  background-color: #2ecc71;
+  border-radius: 35px 35px 5px 5px;
+  border: 3px solid #333;
+  display: none;
+  animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popUp {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+#speech-bubble {
+  display: none;
+  position: absolute;
+  top: 80px;
+  background: white;
+  border: 2px solid #333;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.foot-prints {
+  position: absolute;
+  bottom: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  opacity: 0.15;
+  letter-spacing: 15px;
+  white-space: nowrap;
+}
+
+/* 조작 패널 */
+.control-panel {
+  position: relative;
+  margin-left: 50px;
+  transition: opacity 0.5s;
+}
+
+.up-button {
+  width: 60px;
+  height: 60px;
+  background-color: #fff;
+  border: 3px solid #333;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  transition:
+    transform 0.1s,
+    color 0.2s;
+  color: #333;
+}
+
+.up-button:active {
+  transform: scale(0.9);
+}
+
+.up-button.active-arrow {
+  color: #ff3333;
+}
+
+.click-guide {
+  position: absolute;
+  top: -25px;
+  right: -45px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #ff3333;
+  white-space: nowrap;
+  animation: blink 0.6s infinite alternate;
+}
+
+@keyframes blink {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* 트랜지션 연출 */
+.zoom-transition {
+  transform: scale(25);
+  opacity: 0;
+  transition:
+    transform 1.5s ease-in,
+    opacity 1s;
+}
+
+#main-page {
+  display: none;
+  text-align: center;
+}
+
+#main-page.active {
+  display: block;
+  animation: finalFade 1s forwards;
+}
+
+@keyframes finalFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>작은소원실 인트로: 4층의 서프라이즈</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="floor-guide" id="guide-box">
+        <strong>FLOOR GUIDE</strong>
+        <ul>
+          <li class="target">4F 작은소원실 📍</li>
+          <li>3F 점검중 (쉿!)</li>
+          <li>2F 도깨비 창고</li>
+          <li>1F 로비</li>
+        </ul>
+      </div>
+
+      <div id="intro-wrap">
+        <div class="elevator-outer" id="elevator-all">
+          <div class="floor-display" id="floor-num">1F</div>
+          <div class="elevator-box" id="elevator">
+            <div class="door door-left" id="dL"></div>
+            <div class="door door-right" id="dR"></div>
+            <div class="inside">
+              <div id="speech-bubble">오셨나요! 👋</div>
+              <div class="nokya-placeholder" id="nokya"></div>
+            </div>
+          </div>
+          <div class="foot-prints">🐾 🐾 🐾</div>
+        </div>
+
+        <div class="control-panel" id="ui-panel">
+          <div class="click-guide" id="click-txt">CLICK!</div>
+          <button class="up-button" id="main-btn" onclick="startSequence()">
+            ▲
+          </button>
+        </div>
+      </div>
+
+      <div id="main-page">
+        <h1 style="font-size: 40px; color: #333">우당탕탕 작은소원실</h1>
+        <p>환영합니다! 이제 아지트를 탐험해보세요.</p>
+      </div>
+    </div>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
