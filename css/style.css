@@ -255,3 +255,74 @@ html {
     opacity: 1;
   }
 }
+/* --- 반응형 대응 (Mobile 767px 이하) --- */
+@media (max-width: 767px) {
+  body,
+  html {
+    align-items: center; /* 중앙 정렬 유지 */
+    padding: 20px 10px;
+  }
+
+  #app {
+    flex-direction: column; /* 가이드와 (엘베+버튼) 덩어리를 세로로 쌓음 */
+    width: 100%;
+    max-width: 400px; /* 모바일 가독성 범위 */
+  }
+
+  /* 1. 플로어 가이드: 상단 배치 */
+  .floor-guide {
+    position: relative;
+    left: 0;
+    top: 0;
+    margin-bottom: 40px;
+    width: 180px;
+    transform: rotate(0deg);
+    order: -1;
+  }
+
+  /* 2. 엘리베이터와 버튼 레이아웃: 가로 배치 유지 */
+  #intro-wrap {
+    display: flex;
+    flex-direction: row; /* 좌우 배치 유지 */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 15px; /* 엘베와 버튼 사이 좁은 간격 */
+  }
+
+  /* 모바일용 엘리베이터 크기 최적화 */
+  .elevator-box {
+    width: 180px;
+    height: 280px;
+  }
+
+  .floor-display {
+    padding: 3px 15px;
+    font-size: 16px;
+  }
+
+  /* 3. 조작 패널: 엘베 우측 고정 */
+  .control-panel {
+    margin-left: 0;
+  }
+
+  .up-button {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+
+  /* 클릭 가이드 */
+  .click-guide {
+    font-size: 12px;
+    top: -20px;
+    right: -10px;
+  }
+
+  /* 4. 메인 페이지 텍스트 */
+  #main-page h1 {
+    font-size: 20px !important;
+    line-height: 1.5;
+    padding: 0 15px;
+  }
+}
