@@ -1,3 +1,31 @@
+/**
+ * [1] 페이지 로드 시 상태 확인
+ * 새로고침 시 localStorage에 저장된 값을 확인하여
+ * 이미 메인 페이지에 진입했었다면 인트로를 건너뜁니다.
+ */
+window.onload = function () {
+  const pageState = localStorage.getItem("currentPage");
+
+  if (pageState === "main") {
+    // 인트로 섹션 숨기기
+    const introWrap = document.getElementById("intro-wrap");
+    if (introWrap) introWrap.style.display = "none";
+
+    // 메인 페이지 활성화
+    const mainPage = document.getElementById("main-page");
+    if (mainPage) {
+      mainPage.classList.add("active");
+      mainPage.style.display = "block";
+    }
+
+    // 메인 상호작용(호버 등) 초기화
+    initMain();
+  }
+};
+
+/**
+ * [2] 인트로 엘리베이터 시퀀스 실행
+ */
 function startSequence() {
   const dL = document.getElementById("dL");
   const dR = document.getElementById("dR");
@@ -5,63 +33,109 @@ function startSequence() {
   const elevatorAll = document.getElementById("elevator-all");
   const introWrap = document.getElementById("intro-wrap");
   const mainPage = document.getElementById("main-page");
-  const uiPanel = document.getElementById("ui-panel");
-  const clickTxt = document.getElementById("click-txt");
-  const mainBtn = document.getElementById("main-btn");
   const guideBox = document.getElementById("guide-box");
-  const nokya = document.getElementById("nokya");
+  const uiPanel = document.getElementById("ui-panel");
+  const nokya = document.getElementById("nokya-intro");
   const bubble = document.getElementById("speech-bubble");
+  const mainBtn = document.getElementById("main-btn");
 
-  // 1. 클릭 피드백: 화살표 빨간색 변경
-  clickTxt.style.display = "none";
+  // 초기 상태 설정: 버튼 비활성화 및 화살표 강조
   mainBtn.classList.add("active-arrow");
   mainBtn.disabled = true;
-  mainBtn.style.cursor = "default";
+  const clickTxt = document.getElementById("click-txt");
+  if (clickTxt) clickTxt.style.display = "none";
 
-  // 2. 초기 문 열림 (아무도 없음)
+  // Step 1: 1층 문 열림 (아무도 없음)
   dL.style.transform = "translateX(-100%)";
   dR.style.transform = "translateX(100%)";
 
-  // 3. 문 닫히고 층수 상승
   setTimeout(() => {
+    // Step 2: 문 닫힘
     dL.style.transform = "translateX(0)";
     dR.style.transform = "translateX(0)";
 
     setTimeout(() => {
+      // Step 3: 층수 상승 애니메이션 (1F -> 4F)
       let currentFloor = 1;
-      const interval = setInterval(() => {
+      const upInterval = setInterval(() => {
         currentFloor++;
         floorNum.innerText = currentFloor + "F";
 
         if (currentFloor === 4) {
-          clearInterval(interval);
+          clearInterval(upInterval);
 
-          // 4. 4층 도착: 녹야 깜짝 등장 후 문 열림
+          // Step 4: 4층 도착 - 녹야와 말풍선 등장
           setTimeout(() => {
-            nokya.style.display = "block"; // 녹야 뿅!
-            bubble.style.display = "block"; // 인사말 뿅!
+            if (nokya) nokya.style.display = "block";
+            if (bubble) bubble.style.display = "block";
 
             setTimeout(() => {
+              // Step 5: 문 열리고 메인 페이지로 줌인 전환
               dL.style.transform = "translateX(-100%)";
               dR.style.transform = "translateX(100%)";
 
-              // 5. 메인으로 줌인 진입
               setTimeout(() => {
-                uiPanel.style.opacity = "0";
-                guideBox.style.opacity = "0";
+                // UI 요소 숨기기 및 줌 효과
+                if (guideBox) guideBox.style.opacity = "0";
+                if (uiPanel) uiPanel.style.opacity = "0";
                 elevatorAll.classList.add("zoom-transition");
 
                 setTimeout(() => {
+                  // 메인 페이지 전환 완료
                   introWrap.style.display = "none";
-                  guideBox.style.display = "none";
                   mainPage.classList.add("active");
-                  document.body.style.backgroundColor = "#ffffff";
+                  mainPage.style.display = "block";
+
+                  // ★ 핵심: 새로고침을 위해 상태 저장
+                  localStorage.setItem("currentPage", "main");
+
+                  initMain();
                 }, 1200);
-              }, 1200);
-            }, 500); // 녹야 나오고 0.5초 뒤 문열림
+              }, 1000);
+            }, 600);
           }, 500);
         }
       }, 800);
-    }, 1300);
+    }, 1200);
   }, 1500);
+}
+
+/**
+ * [3] 메인 페이지 상호작용 초기화 (호버 효과 등)
+ */
+function initMain() {
+  const group = document.getElementById("nockyaGroup");
+  const char = document.getElementById("nockyaMain");
+  const board = document.getElementById("board");
+
+  if (!group || !char || !board) return;
+
+  // 마우스 올렸을 때 효과
+  const onHover = () => {
+    group.classList.add("is-active");
+    board.classList.add("is-shaking");
+    char.style.backgroundImage = "url('img/녹야_호버.png')";
+  };
+
+  // 마우스 뗐을 때 효과
+  const offHover = () => {
+    group.classList.remove("is-active");
+    board.classList.remove("is-shaking");
+    char.style.backgroundImage = "url('img/녹야.png')";
+  };
+
+  // 이벤트 리스너 등록
+  [group, board].forEach((el) => {
+    el.addEventListener("mouseenter", onHover);
+    el.addEventListener("mouseleave", offHover);
+  });
+}
+
+/**
+ * [추가] 다시 인트로를 보고 싶을 때 호출하는 리셋 함수
+ * 콘솔창에 resetToIntro()를 입력하거나 버튼을 만들어 연결하세요.
+ */
+function resetToIntro() {
+  localStorage.removeItem("currentPage");
+  location.reload();
 }

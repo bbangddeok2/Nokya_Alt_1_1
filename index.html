@@ -3,35 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>4층 도착후 등장</title>
+    <title>도깨비즈 작업실</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <div id="app">
-      <div class="floor-guide" id="guide-box">
-        <strong>FLOOR GUIDE</strong>
-        <ul>
-          <li class="target">4F 작은소원실 📍</li>
-          <li>3F 점검중 (쉿!)</li>
-          <li>2F 도깨비 창고</li>
-          <li>1F 로비</li>
-        </ul>
-      </div>
-
       <div id="intro-wrap">
+        <div class="floor-guide" id="guide-box">
+          <strong>FLOOR GUIDE</strong>
+          <ul>
+            <li class="target">4F 작은소원실 📍</li>
+            <li>3F 점검중 (쉿!)</li>
+            <li>2F 도깨비 창고</li>
+            <li>1F 로비</li>
+          </ul>
+        </div>
         <div class="elevator-outer" id="elevator-all">
           <div class="floor-display" id="floor-num">1F</div>
-          <div class="elevator-box" id="elevator">
+          <div class="elevator-box">
             <div class="door door-left" id="dL"></div>
             <div class="door door-right" id="dR"></div>
             <div class="inside">
-              <div id="speech-bubble">오셨나요! 👋</div>
-              <div class="nokya-placeholder" id="nokya"></div>
+              <div id="speech-bubble" style="display: none">오셨나요! 👋</div>
+              <div id="nokya-intro" style="display: none"></div>
             </div>
           </div>
-          <div class="foot-prints">🐾 🐾 🐾</div>
         </div>
-
         <div class="control-panel" id="ui-panel">
           <div class="click-guide" id="click-txt">CLICK!</div>
           <button class="up-button" id="main-btn" onclick="startSequence()">
@@ -41,15 +38,20 @@
       </div>
 
       <div id="main-page">
-        <h1 style="font-size: 40px; color: #333">
-          키워드: 모두가 퇴근한 밤,정적을 깨고 시작되는 도깨비들의 우당탕탕 야간
-          근무 <br />
-          작은소원실(사무실)
-        </h1>
-        <p>메인페이지 허브형 구조</p>
+        <div class="studio-container">
+          <div class="obj shelf"></div>
+          <div class="obj board" id="board"></div>
+          <div class="obj tobi"></div>
+          <div class="obj lulu"></div>
+          <div class="obj lala"></div>
+          <div class="obj hwi"></div>
+          <div class="nockya-group" id="nockyaGroup">
+            <img src="img/녹야_말풍선.png" class="bubble" id="bubble" />
+            <div class="nockya-main" id="nockyaMain"></div>
+          </div>
+        </div>
       </div>
     </div>
-
     <script src="js/main.js"></script>
   </body>
 </html>
