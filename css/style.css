@@ -428,13 +428,13 @@ body {
   }
 
   .tobi {
-    width: 37vw !important;
+    width: 40vw !important;
     height: 14vh !important;
     left: 7vw !important;
-    top: 48vh !important;
+    top: 43vh !important;
   }
   .lulu {
-    width: 33% !important;
+    width: 36% !important;
     height: 20% !important;
     top: 48% !important;
     left: auto !important;
@@ -443,7 +443,7 @@ body {
     z-index: 3 !important;
   }
   .lala {
-    width: 28% !important;
+    width: 30% !important;
     height: 20% !important;
     top: auto !important;
     left: 12% !important;
@@ -453,7 +453,7 @@ body {
   }
 
   .hwi {
-    width: 38vw !important;
+    width: 39vw !important;
     height: 20vh !important;
     right: 6vw !important;
     bottom: 10vh !important;
