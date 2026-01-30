@@ -768,3 +768,78 @@ body {
     margin-left: 370px; /* 엘베 우측으로 이동 */
   }
 }
+@media (max-width: 767px) {
+  /* 모바일에서 주소창/툴바 때문에 vh가 흔들려서 dvh 권장 */
+  #app {
+    height: 100dvh;
+  }
+
+  #intro-wrap {
+    /* 핵심: 잘림 방지 */
+    height: 100dvh;
+    max-height: 100dvh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    /* 레이아웃을 grid로 고정 */
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "guide guide"
+      "elev  panel";
+    gap: 14px 12px;
+    align-content: start;
+    justify-content: center;
+    padding: 16px;
+  }
+
+  /* 플로어 가이드: 맨 위 한줄 전체 */
+  .floor-guide {
+    grid-area: guide;
+    position: relative;
+    left: auto;
+    top: auto;
+    margin: 0;
+    transform: rotate(-1deg);
+    width: min(92vw, 340px);
+    justify-self: center;
+  }
+
+  /* 엘베 영역 */
+  .elevator-outer {
+    grid-area: elev;
+    justify-self: center;
+  }
+
+  /* 버튼(컨트롤) 영역: 엘베 우측 고정 */
+  .control-panel {
+    grid-area: panel;
+    position: relative; /* 기존 유지 */
+    align-self: center;
+    justify-self: start;
+    margin: 0; /* 중요: 기존 margin 억지이동 제거 */
+  }
+
+  .elevator-box {
+    /* 너무 커서 아래 잘리는 케이스 방지 */
+    width: min(76vw, 290px);
+    height: min(52dvh, 420px);
+  }
+
+  .floor-display {
+    font-size: 18px;
+    padding: 5px 16px;
+    margin-bottom: 10px;
+  }
+
+  .up-button {
+    width: 54px;
+    height: 54px;
+    font-size: 22px;
+  }
+
+  .click-guide {
+    top: -26px;
+    font-size: 12px;
+  }
+}
