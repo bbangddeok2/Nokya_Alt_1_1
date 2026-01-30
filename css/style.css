@@ -400,8 +400,8 @@ body {
   .board {
     width: 60vw !important;
     height: 20vh !important;
-    top: 6vh !important;
-    right: 5vw !important;
+    top: 9vh !important;
+    right: -12vw !important;
     left: auto !important;
     z-index: 4 !important;
   }
@@ -457,5 +457,241 @@ body {
     height: 20vh !important;
     right: 6vw !important;
     bottom: 10vh !important;
+  }
+}
+/* =========================
+   MOBILE RESPONSIVE SEGMENTS
+   767px 기준의 이상적 배치를 전 구간 유지
+========================= */
+
+/* 공통 모바일 설정 */
+@media (max-width: 767px) {
+  #intro-wrap {
+    flex-direction: column;
+    gap: 14px;
+    padding: 16px;
+  }
+  .floor-guide {
+    position: relative;
+    left: auto;
+    top: auto;
+    margin: 0;
+    transform: rotate(-1deg);
+    width: min(92vw, 340px);
+  }
+  .elevator-row {
+    gap: 12px;
+  }
+  .elevator-box {
+    width: min(76vw, 290px);
+    height: min(56vh, 420px);
+  }
+  .studio-container {
+    background: url("../img/모바일바닥.png") no-repeat center bottom !important;
+    background-size: 100% 100% !important;
+  }
+  .obj,
+  .nockya-group {
+    position: absolute !important;
+    transform: none !important;
+  }
+}
+
+/* 1구간: 767px ~ 700px (사용자님 원본 기준) */
+@media (max-width: 767px) and (min-width: 700px) {
+  .board {
+    width: 60vw !important;
+    height: 20vh !important;
+    top: 9vh !important;
+    right: -12vw !important;
+  }
+  .shelf {
+    width: 23vw !important;
+    height: 10vh !important;
+    top: 10vh !important;
+    left: 6vw !important;
+  }
+  .nockya-group {
+    width: 34vw !important;
+    height: 20vh !important;
+    top: 22vh !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+  .tobi {
+    width: 40vw !important;
+    height: 14vh !important;
+    left: 7vw !important;
+    top: 43vh !important;
+  }
+  .lulu {
+    width: 36vw !important;
+    height: 20vh !important;
+    top: 48vh !important;
+    right: 10vw !important;
+  }
+  .lala {
+    width: 30vw !important;
+    height: 20vh !important;
+    bottom: 14vh !important;
+    left: 12vw !important;
+  }
+  .hwi {
+    width: 39vw !important;
+    height: 20vh !important;
+    right: 6vw !important;
+    bottom: 10vh !important;
+  }
+}
+
+/* 2구간: 699px ~ 600px (크기 소폭 보정) */
+@media (max-width: 699px) and (min-width: 600px) {
+  .board {
+    width: 65vw !important;
+    top: 10vh !important;
+    right: -10vw !important;
+  }
+  .shelf {
+    width: 25vw !important;
+    left: 5vw !important;
+  }
+  .nockya-group {
+    width: 38vw !important;
+    top: 24vh !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+  .tobi {
+    width: 42vw !important;
+    top: 45vh !important;
+  }
+  .lulu {
+    width: 38vw !important;
+    top: 50vh !important;
+    right: 8vw !important;
+  }
+  .lala {
+    width: 32vw !important;
+    bottom: 15vh !important;
+  }
+  .hwi {
+    width: 42vw !important;
+    right: 5vw !important;
+    bottom: 11vh !important;
+  }
+}
+
+/* 3구간: 599px ~ 500px (가독성 확보를 위해 width 추가 상향) */
+@media (max-width: 599px) and (min-width: 500px) {
+  .board {
+    width: 70vw !important;
+    top: 11vh !important;
+    right: -8vw !important;
+  }
+  .shelf {
+    width: 28vw !important;
+  }
+  .nockya-group {
+    width: 42vw !important;
+    top: 26vh !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+  .tobi {
+    width: 45vw !important;
+    top: 47vh !important;
+  }
+  .lulu {
+    width: 42vw !important;
+    top: 52vh !important;
+  }
+  .lala {
+    width: 35vw !important;
+    bottom: 16vh !important;
+  }
+  .hwi {
+    width: 45vw !important;
+    bottom: 12vh !important;
+  }
+}
+
+/* 4구간: 499px ~ 400px (캐릭터가 너무 작아지지 않게 조절) */
+@media (max-width: 499px) and (min-width: 400px) {
+  .board {
+    width: 75vw !important;
+    top: 12vh !important;
+    right: -5vw !important;
+  }
+  .shelf {
+    width: 30vw !important;
+  }
+  .nockya-group {
+    width: 46vw !important;
+    top: 28vh !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+  .tobi {
+    width: 48vw !important;
+    top: 49vh !important;
+  }
+  .lulu {
+    width: 45vw !important;
+    top: 54vh !important;
+  }
+  .lala {
+    width: 38vw !important;
+    bottom: 17vh !important;
+  }
+  .hwi {
+    width: 48vw !important;
+    bottom: 13vh !important;
+  }
+}
+
+/* 5구간: 399px 이하 (최종 모바일 폰 사이즈 최적화) */
+@media (max-width: 399px) {
+  .board {
+    width: 85vw !important;
+    top: 13vh !important;
+    right: -5vw !important;
+  }
+  .shelf {
+    width: 35vw !important;
+    top: 14vh !important;
+    left: 4vw !important;
+  }
+  .nockya-group {
+    width: 52vw !important;
+    top: 30vh !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+  .tobi {
+    width: 52vw !important;
+    top: 52vh !important;
+    left: 5vw !important;
+  }
+  .lulu {
+    width: 48vw !important;
+    top: 58vh !important;
+    right: 5vw !important;
+  }
+  .lala {
+    width: 42vw !important;
+    bottom: 18vh !important;
+    left: 8vw !important;
+  }
+  .hwi {
+    width: 55vw !important;
+    bottom: 14vh !important;
+    right: 4vw !important;
+  }
+
+  /* 말풍선 가독성 보정 */
+  .bubble {
+    width: 70% !important;
+    top: -25% !important;
+    left: -45% !important;
   }
 }
