@@ -506,8 +506,8 @@ body {
     right: -12vw !important;
   }
   .shelf {
-    width: 23vw !important;
-    height: 10vh !important;
+    width: 33vw !important;
+    height: 8vh !important;
     top: 10vh !important;
     left: 6vw !important;
   }
@@ -519,26 +519,26 @@ body {
     transform: translateX(-50%) !important;
   }
   .tobi {
-    width: 40vw !important;
-    height: 14vh !important;
+    width: 52vw !important;
+    height: 15vh !important;
     left: 7vw !important;
     top: 43vh !important;
   }
   .lulu {
-    width: 36vw !important;
-    height: 20vh !important;
+    width: 50vw !important;
+    height: 19vh !important;
     top: 48vh !important;
     right: 10vw !important;
   }
   .lala {
-    width: 30vw !important;
-    height: 20vh !important;
+    width: 35vw !important;
+    height: 15vh !important;
     bottom: 14vh !important;
     left: 12vw !important;
   }
   .hwi {
-    width: 39vw !important;
-    height: 20vh !important;
+    width: 49vw !important;
+    height: 23vh !important;
     right: 6vw !important;
     bottom: 10vh !important;
   }
@@ -555,8 +555,8 @@ body {
     right: -14vw !important;
   }
   .shelf {
-    width: 24vw !important;
-    height: 10vh !important;
+    width: 33vw !important;
+    height: 8vh !important;
     top: 10vh !important;
     left: 6vw !important;
   }
@@ -567,29 +567,29 @@ body {
     top: 24vh !important;
   }
   .tobi {
-    width: 42vw !important;
-    height: 14vh !important;
+    width: 52vw !important;
+    height: 15vh !important;
     top: 44vh !important;
     left: 6vw !important;
   }
 
   /* ✅ 루루(서류함) / 라라(카메라) : 화면이 좁아질수록 살짝 안쪽으로 */
   .lulu {
-    width: 36% !important;
-    height: 20% !important;
+    width: 50% !important;
+    height: 19% !important;
     top: 49% !important;
     right: 8% !important;
   }
   .lala {
-    width: 30% !important;
-    height: 20% !important;
+    width: 35% !important;
+    height: 15% !important;
     bottom: 14% !important;
     left: 10% !important;
   }
 
   .hwi {
-    width: 40vw !important;
-    height: 20vh !important;
+    width: 49vw !important;
+    height: 23vh !important;
     right: 5vw !important;
     bottom: 10vh !important;
   }
@@ -607,8 +607,8 @@ body {
     right: -18vw !important;
   }
   .shelf {
-    width: 26vw !important;
-    height: 10vh !important;
+    width: 33vw !important;
+    height: 8vh !important;
     top: 10vh !important;
     left: 5vw !important;
   }
@@ -619,28 +619,28 @@ body {
     top: 24vh !important;
   }
   .tobi {
-    width: 44vw !important;
-    height: 13.5vh !important;
+    width: 52vw !important;
+    height: 15vh !important;
     top: 45vh !important;
     left: 5vw !important;
   }
 
   .lulu {
-    width: 34% !important;
+    width: 50% !important;
     height: 19% !important;
     top: 50% !important;
     right: 7% !important;
   }
   .lala {
-    width: 28% !important;
-    height: 19% !important;
+    width: 35% !important;
+    height: 15% !important;
     bottom: 13% !important;
     left: 9% !important;
   }
 
   .hwi {
-    width: 41vw !important;
-    height: 19vh !important;
+    width: 49vw !important;
+    height: 23vh !important;
     right: 4vw !important;
     bottom: 9.5vh !important;
   }
@@ -657,8 +657,8 @@ body {
     right: -22vw !important;
   }
   .shelf {
-    width: 28vw !important;
-    height: 9.5vh !important;
+    width: 33vw !important;
+    height: 8vh !important;
     top: 10vh !important;
     left: 4vw !important;
   }
@@ -669,28 +669,28 @@ body {
     top: 24vh !important;
   }
   .tobi {
-    width: 46vw !important;
-    height: 13vh !important;
+    width: 52vw !important;
+    height: 15vh !important;
     top: 46vh !important;
     left: 4vw !important;
   }
 
   .lulu {
-    width: 33% !important;
-    height: 18% !important;
+    width: 50% !important;
+    height: 19% !important;
     top: 51% !important;
     right: 6% !important;
   }
   .lala {
-    width: 27% !important;
-    height: 18% !important;
+    width: 35% !important;
+    height: 15% !important;
     bottom: 12% !important;
     left: 8% !important;
   }
 
   .hwi {
-    width: 42vw !important;
-    height: 18.5vh !important;
+    width: 49vw !important;
+    height: 23vh !important;
     right: 3vw !important;
     bottom: 9vh !important;
   }
@@ -707,8 +707,8 @@ body {
     right: -26vw !important;
   }
   .shelf {
-    width: 30vw !important;
-    height: 9vh !important;
+    width: 33vw !important;
+    height: 8vh !important;
     top: 10vh !important;
     left: 3vw !important;
   }
@@ -719,29 +719,52 @@ body {
     top: 24vh !important;
   }
   .tobi {
-    width: 48vw !important;
-    height: 12.5vh !important;
+    width: 52vw !important;
+    height: 15vh !important;
     top: 47vh !important;
     left: 3vw !important;
   }
 
   .lulu {
-    width: 32% !important;
-    height: 17% !important;
+    width: 50% !important;
+    height: 19% !important;
     top: 52% !important;
     right: 5% !important;
   }
   .lala {
-    width: 26% !important;
-    height: 17% !important;
+    width: 35% !important;
+    height: 15% !important;
     bottom: 11.5% !important;
     left: 7% !important;
   }
 
   .hwi {
-    width: 43vw !important;
-    height: 18vh !important;
+    width: 49vw !important;
+    height: 23vh !important;
     right: 2.5vw !important;
     bottom: 8.5vh !important;
+  }
+}
+@media (max-width: 767px) {
+  #intro-wrap {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* 플로어 가이드는 맨 위 */
+  .floor-guide {
+    order: 1;
+    margin-bottom: 12px;
+  }
+
+  /* 엘베 + 버튼을 한 줄처럼 */
+  .elevator-outer {
+    order: 2;
+  }
+
+  .control-panel {
+    order: 3;
+    margin-top: -260px; /* 엘베 세로 중앙쯤 */
+    margin-left: 370px; /* 엘베 우측으로 이동 */
   }
 }
