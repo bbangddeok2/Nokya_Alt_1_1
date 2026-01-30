@@ -1,9 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap");
+
 * {
   box-sizing: border-box;
 }
-body,
-html {
+
+html,
+body {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -12,6 +14,7 @@ html {
   background-color: #f9f7f2;
   font-family: "Noto Sans KR", sans-serif;
 }
+
 #app {
   position: relative;
   width: 100vw;
@@ -21,15 +24,18 @@ html {
   align-items: center;
 }
 
+/* =========================
+   INTRO
+========================= */
 #intro-wrap {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 100;
 }
+
 .floor-guide {
   position: absolute;
   left: 50%;
@@ -40,7 +46,7 @@ html {
   background: #fff;
   border: 3px solid #333;
   padding: 15px;
-  box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.1);
   z-index: 5;
   transition: opacity 0.5s;
 }
@@ -66,11 +72,19 @@ html {
   display: inline-block;
 }
 
+/* ✅ 엘베 + 버튼 묶음 */
+.elevator-row {
+  display: flex;
+  align-items: center;
+  gap: 40px; /* 데스크탑은 원래 margin-left 느낌 유지 */
+}
+
 .elevator-outer {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .floor-display {
   background: #333;
   color: #ff3333;
@@ -80,6 +94,7 @@ html {
   border-radius: 5px;
   margin-bottom: 15px;
 }
+
 .elevator-box {
   width: 260px;
   height: 380px;
@@ -88,6 +103,7 @@ html {
   overflow: hidden;
   background: #d1d1d1;
 }
+
 .door {
   position: absolute;
   width: 50%;
@@ -105,15 +121,16 @@ html {
   right: 0;
   border-left: 1px solid #333;
 }
+
 .inside {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 #nokya-intro {
   width: 70px;
   height: 90px;
@@ -121,6 +138,7 @@ html {
   border-radius: 35px 35px 5px 5px;
   border: 3px solid #333;
 }
+
 #speech-bubble {
   position: absolute;
   top: 70px;
@@ -132,8 +150,8 @@ html {
   font-weight: bold;
 }
 
+/* CONTROL */
 .control-panel {
-  margin-left: 40px;
   position: relative;
 }
 .up-button {
@@ -152,6 +170,7 @@ html {
 .up-button.active-arrow {
   color: #ff3333;
 }
+
 .click-guide {
   position: absolute;
   top: -30px;
@@ -162,13 +181,20 @@ html {
   animation: blink 0.6s infinite alternate;
 }
 
+/* 줌 전환 */
+.zoom-transition {
+  transform: scale(80);
+  opacity: 0;
+  transition: 1.5s ease-in;
+}
+
+/* =========================
+   MAIN
+========================= */
 #main-page {
   display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
   background-color: #222;
   z-index: 50;
 }
@@ -176,6 +202,7 @@ html {
   display: block;
   animation: fadeIn 1s forwards;
 }
+
 .studio-container {
   position: relative;
   width: 100%;
@@ -189,6 +216,7 @@ html {
   background-size: contain;
   background-repeat: no-repeat;
 }
+
 .shelf {
   width: 12%;
   height: 15%;
@@ -243,6 +271,7 @@ html {
   z-index: 10;
   cursor: pointer;
 }
+
 .nockya-main {
   width: 100%;
   height: 100%;
@@ -250,6 +279,7 @@ html {
   background-size: contain;
   transition: 0.2s;
 }
+
 .bubble {
   position: absolute;
   width: 60%;
@@ -260,39 +290,14 @@ html {
   pointer-events: none;
 }
 
-@media (max-width: 767px) {
-  .floor-guide {
-    position: relative;
-    left: 0;
-    margin: 0 0 20px 0;
-    transform: rotate(0);
-    width: 90%;
-  }
-  .studio-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px 0;
-    overflow-y: auto;
-    background-size: cover;
-  }
-  .obj,
-  .nockya-group {
-    position: relative;
-    width: 180px;
-    height: 180px;
-    top: auto;
-    left: auto;
-    bottom: auto;
-    right: auto;
-    margin-bottom: 20px;
-  }
-  .board {
-    width: 90%;
-    height: 200px;
-    order: -1;
-  }
+.board.is-shaking {
+  animation: shake 0.6s infinite;
 }
+.is-active .bubble {
+  opacity: 1;
+  animation: float 2s infinite;
+}
+
 @keyframes blink {
   from {
     opacity: 1;
@@ -330,15 +335,127 @@ html {
     transform: translateY(-10px);
   }
 }
-.zoom-transition {
-  transform: scale(80);
-  opacity: 0;
-  transition: 1.5s ease-in;
-}
-.board.is-shaking {
-  animation: shake 0.6s infinite;
-}
-.is-active .bubble {
-  opacity: 1;
-  animation: float 2s infinite;
+
+/* =========================
+   MOBILE (<=767)
+   - floor guide는 위
+   - 버튼은 엘베 우측 (elevator-row flex)
+   - 메인 배경 모바일바닥 + 재배치
+========================= */
+@media (max-width: 767px) {
+  #intro-wrap {
+    flex-direction: column;
+    gap: 14px;
+    padding: 16px;
+  }
+
+  /* 플로어 가이드: 엘베 위 */
+  .floor-guide {
+    position: relative;
+    left: auto;
+    top: auto;
+    margin: 0;
+    transform: rotate(-1deg);
+    width: min(92vw, 340px);
+  }
+
+  /* 엘베 + 버튼은 같은 줄 */
+  .elevator-row {
+    gap: 12px;
+  }
+
+  .elevator-box {
+    width: min(76vw, 290px);
+    height: min(56vh, 420px);
+  }
+
+  .floor-display {
+    font-size: 18px;
+    padding: 5px 16px;
+    margin-bottom: 10px;
+  }
+
+  .up-button {
+    width: 54px;
+    height: 54px;
+    font-size: 22px;
+  }
+  .click-guide {
+    top: -26px;
+    font-size: 12px;
+  }
+
+  /* MAIN: 배경 교체 + 씬 재배치 */
+  .studio-container {
+    background: url("../img/모바일바닥.png") no-repeat center bottom !important;
+    background-size: 100% 100% !important;
+  }
+
+  .obj,
+  .nockya-group {
+    position: absolute !important;
+    margin: 0 !important;
+  }
+
+  .board {
+    width: 60vw !important;
+    height: 20vh !important;
+    top: 6vh !important;
+    right: 5vw !important;
+    left: auto !important;
+    z-index: 4 !important;
+  }
+  .shelf {
+    width: 23vw !important;
+    height: 10vh !important;
+    top: 10vh !important;
+    left: 6vw !important;
+    z-index: 3 !important;
+  }
+
+  .nockya-group {
+    width: 34vw !important;
+    height: 20vh !important;
+    top: 22vh !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 6 !important;
+  }
+  .bubble {
+    width: 62% !important;
+    top: -22% !important;
+    left: -42% !important;
+  }
+
+  .tobi {
+    width: 37vw !important;
+    height: 14vh !important;
+    left: 7vw !important;
+    top: 48vh !important;
+  }
+  .lulu {
+    width: 33% !important;
+    height: 20% !important;
+    top: 48% !important;
+    left: auto !important;
+    right: 10% !important;
+    bottom: auto !important;
+    z-index: 3 !important;
+  }
+  .lala {
+    width: 28% !important;
+    height: 20% !important;
+    top: auto !important;
+    left: 12% !important;
+    right: auto !important;
+    bottom: 14% !important;
+    z-index: 3 !important;
+  }
+
+  .hwi {
+    width: 38vw !important;
+    height: 20vh !important;
+    right: 6vw !important;
+    bottom: 10vh !important;
+  }
 }

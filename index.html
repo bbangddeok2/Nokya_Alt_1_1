@@ -6,8 +6,10 @@
     <title>도깨비즈 작업실</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
+
   <body>
     <div id="app">
+      <!-- INTRO -->
       <div id="intro-wrap">
         <div class="floor-guide" id="guide-box">
           <strong>FLOOR GUIDE</strong>
@@ -18,25 +20,31 @@
             <li>1F 로비</li>
           </ul>
         </div>
-        <div class="elevator-outer" id="elevator-all">
-          <div class="floor-display" id="floor-num">1F</div>
-          <div class="elevator-box">
-            <div class="door door-left" id="dL"></div>
-            <div class="door door-right" id="dR"></div>
-            <div class="inside">
-              <div id="speech-bubble" style="display: none">오셨나요! 👋</div>
-              <div id="nokya-intro" style="display: none"></div>
+
+        <!-- ✅ 엘베 + 버튼을 같은 줄로 묶음(버튼 실종 방지) -->
+        <div class="elevator-row" id="elevator-row">
+          <div class="elevator-outer" id="elevator-all">
+            <div class="floor-display" id="floor-num">1F</div>
+
+            <div class="elevator-box">
+              <div class="door door-left" id="dL"></div>
+              <div class="door door-right" id="dR"></div>
+
+              <div class="inside">
+                <div id="speech-bubble" style="display: none">오셨나요! 👋</div>
+                <div id="nokya-intro" style="display: none"></div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="control-panel" id="ui-panel">
-          <div class="click-guide" id="click-txt">CLICK!</div>
-          <button class="up-button" id="main-btn" onclick="startSequence()">
-            ▲
-          </button>
+
+          <div class="control-panel" id="ui-panel">
+            <div class="click-guide" id="click-txt">CLICK!</div>
+            <button class="up-button" id="main-btn" type="button">▲</button>
+          </div>
         </div>
       </div>
 
+      <!-- MAIN -->
       <div id="main-page">
         <div class="studio-container">
           <div class="obj shelf"></div>
@@ -45,6 +53,7 @@
           <div class="obj lulu"></div>
           <div class="obj lala"></div>
           <div class="obj hwi"></div>
+
           <div class="nockya-group" id="nockyaGroup">
             <img src="img/녹야_말풍선.png" class="bubble" id="bubble" />
             <div class="nockya-main" id="nockyaMain"></div>
@@ -52,6 +61,7 @@
         </div>
       </div>
     </div>
+
     <script src="js/main.js"></script>
   </body>
 </html>
