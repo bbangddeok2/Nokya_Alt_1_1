@@ -544,154 +544,204 @@ body {
   }
 }
 
-/* 2구간: 699px ~ 600px (크기 소폭 보정) */
+/* =========================================================
+   699~600 : 767 기준 느낌 유지 (약간만 축소)
+========================================================= */
 @media (max-width: 699px) and (min-width: 600px) {
   .board {
-    width: 65vw !important;
-    top: 10vh !important;
-    right: -10vw !important;
+    width: 62vw !important;
+    height: 20vh !important;
+    top: 9vh !important;
+    right: -14vw !important;
   }
   .shelf {
-    width: 25vw !important;
-    left: 5vw !important;
+    width: 24vw !important;
+    height: 10vh !important;
+    top: 10vh !important;
+    left: 6vw !important;
   }
+
   .nockya-group {
-    width: 38vw !important;
+    width: 35vw !important;
+    height: 20vh !important;
     top: 24vh !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
   }
   .tobi {
     width: 42vw !important;
-    top: 45vh !important;
+    height: 14vh !important;
+    top: 44vh !important;
+    left: 6vw !important;
   }
+
+  /* ✅ 루루(서류함) / 라라(카메라) : 화면이 좁아질수록 살짝 안쪽으로 */
   .lulu {
-    width: 38vw !important;
-    top: 50vh !important;
-    right: 8vw !important;
+    width: 36% !important;
+    height: 20% !important;
+    top: 49% !important;
+    right: 8% !important;
   }
   .lala {
-    width: 32vw !important;
-    bottom: 15vh !important;
+    width: 30% !important;
+    height: 20% !important;
+    bottom: 14% !important;
+    left: 10% !important;
   }
+
   .hwi {
-    width: 42vw !important;
+    width: 40vw !important;
+    height: 20vh !important;
     right: 5vw !important;
-    bottom: 11vh !important;
+    bottom: 10vh !important;
   }
 }
 
-/* 3구간: 599px ~ 500px (가독성 확보를 위해 width 추가 상향) */
+/* =========================================================
+   599~500 : 767 기준 느낌 유지 (한 단계 더 축소)
+========================================================= */
 @media (max-width: 599px) and (min-width: 500px) {
+  /* 폭 줄면 vw 기반 오브제들이 커 보이니까 %로 조금 더 눌러줌 */
   .board {
-    width: 70vw !important;
-    top: 11vh !important;
-    right: -8vw !important;
+    width: 64vw !important;
+    height: 19vh !important;
+    top: 9vh !important;
+    right: -18vw !important;
+  }
+  .shelf {
+    width: 26vw !important;
+    height: 10vh !important;
+    top: 10vh !important;
+    left: 5vw !important;
+  }
+
+  .nockya-group {
+    width: 36vw !important;
+    height: 19vh !important;
+    top: 24vh !important;
+  }
+  .tobi {
+    width: 44vw !important;
+    height: 13.5vh !important;
+    top: 45vh !important;
+    left: 5vw !important;
+  }
+
+  .lulu {
+    width: 34% !important;
+    height: 19% !important;
+    top: 50% !important;
+    right: 7% !important;
+  }
+  .lala {
+    width: 28% !important;
+    height: 19% !important;
+    bottom: 13% !important;
+    left: 9% !important;
+  }
+
+  .hwi {
+    width: 41vw !important;
+    height: 19vh !important;
+    right: 4vw !important;
+    bottom: 9.5vh !important;
+  }
+}
+
+/* =========================================================
+   499~400 : 767 기준 느낌 유지 (작은 폰 / 요소 겹침 방지)
+========================================================= */
+@media (max-width: 499px) and (min-width: 400px) {
+  .board {
+    width: 66vw !important;
+    height: 18vh !important;
+    top: 9vh !important;
+    right: -22vw !important;
   }
   .shelf {
     width: 28vw !important;
+    height: 9.5vh !important;
+    top: 10vh !important;
+    left: 4vw !important;
   }
+
   .nockya-group {
-    width: 42vw !important;
-    top: 26vh !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
+    width: 38vw !important;
+    height: 18.5vh !important;
+    top: 24vh !important;
   }
   .tobi {
-    width: 45vw !important;
-    top: 47vh !important;
+    width: 46vw !important;
+    height: 13vh !important;
+    top: 46vh !important;
+    left: 4vw !important;
   }
+
   .lulu {
-    width: 42vw !important;
-    top: 52vh !important;
+    width: 33% !important;
+    height: 18% !important;
+    top: 51% !important;
+    right: 6% !important;
   }
   .lala {
-    width: 35vw !important;
-    bottom: 16vh !important;
+    width: 27% !important;
+    height: 18% !important;
+    bottom: 12% !important;
+    left: 8% !important;
   }
+
   .hwi {
-    width: 45vw !important;
-    bottom: 12vh !important;
+    width: 42vw !important;
+    height: 18.5vh !important;
+    right: 3vw !important;
+    bottom: 9vh !important;
   }
 }
 
-/* 4구간: 499px ~ 400px (캐릭터가 너무 작아지지 않게 조절) */
-@media (max-width: 499px) and (min-width: 400px) {
+/* =========================================================
+   399~ : 초소형 (겹침 최소 / 전체 살짝 더 축소)
+========================================================= */
+@media (max-width: 399px) {
   .board {
-    width: 75vw !important;
-    top: 12vh !important;
-    right: -5vw !important;
+    width: 68vw !important;
+    height: 17.5vh !important;
+    top: 9vh !important;
+    right: -26vw !important;
   }
   .shelf {
     width: 30vw !important;
+    height: 9vh !important;
+    top: 10vh !important;
+    left: 3vw !important;
   }
+
   .nockya-group {
-    width: 46vw !important;
-    top: 28vh !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
+    width: 40vw !important;
+    height: 18vh !important;
+    top: 24vh !important;
   }
   .tobi {
     width: 48vw !important;
-    top: 49vh !important;
-  }
-  .lulu {
-    width: 45vw !important;
-    top: 54vh !important;
-  }
-  .lala {
-    width: 38vw !important;
-    bottom: 17vh !important;
-  }
-  .hwi {
-    width: 48vw !important;
-    bottom: 13vh !important;
-  }
-}
-
-/* 5구간: 399px 이하 (최종 모바일 폰 사이즈 최적화) */
-@media (max-width: 399px) {
-  .board {
-    width: 85vw !important;
-    top: 13vh !important;
-    right: -5vw !important;
-  }
-  .shelf {
-    width: 35vw !important;
-    top: 14vh !important;
-    left: 4vw !important;
-  }
-  .nockya-group {
-    width: 52vw !important;
-    top: 30vh !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-  }
-  .tobi {
-    width: 52vw !important;
-    top: 52vh !important;
-    left: 5vw !important;
-  }
-  .lulu {
-    width: 48vw !important;
-    top: 58vh !important;
-    right: 5vw !important;
-  }
-  .lala {
-    width: 42vw !important;
-    bottom: 18vh !important;
-    left: 8vw !important;
-  }
-  .hwi {
-    width: 55vw !important;
-    bottom: 14vh !important;
-    right: 4vw !important;
+    height: 12.5vh !important;
+    top: 47vh !important;
+    left: 3vw !important;
   }
 
-  /* 말풍선 가독성 보정 */
-  .bubble {
-    width: 70% !important;
-    top: -25% !important;
-    left: -45% !important;
+  .lulu {
+    width: 32% !important;
+    height: 17% !important;
+    top: 52% !important;
+    right: 5% !important;
+  }
+  .lala {
+    width: 26% !important;
+    height: 17% !important;
+    bottom: 11.5% !important;
+    left: 7% !important;
+  }
+
+  .hwi {
+    width: 43vw !important;
+    height: 18vh !important;
+    right: 2.5vw !important;
+    bottom: 8.5vh !important;
   }
 }
