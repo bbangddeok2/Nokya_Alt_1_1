@@ -37,6 +37,7 @@ function startSequence() {
   // 초기 설정
   mainBtn.classList.add("active-arrow");
   mainBtn.disabled = true;
+
   const clickTxt = document.getElementById("click-txt");
   if (clickTxt) clickTxt.style.display = "none";
 
@@ -77,7 +78,7 @@ function startSequence() {
                 setTimeout(() => {
                   introWrap.style.display = "none";
                   mainPage.classList.add("active");
-                  initMain();
+                  initMain(); // ✅ 메인 인터랙션 시작(모바일 탭 토글만)
                 }, 1200);
               }, 1000);
             }, 600);
@@ -90,53 +91,70 @@ function startSequence() {
 
 function initMain() {
   const group = document.getElementById("nockyaGroup");
-  const char = document.getElementById("nockyaMain");
   const board = document.getElementById("board");
-  if (!group || !char || !board) return;
+  const lala = document.querySelector(".lala");
+  if (!group || !board || !lala) return;
 
-  const on = () => {
-    group.classList.add("is-active");
-    board.classList.add("is-shaking");
-    char.style.backgroundImage = "url('img/녹야_호버.png')";
-  };
-
-  const off = () => {
-    group.classList.remove("is-active");
-    board.classList.remove("is-shaking");
-    char.style.backgroundImage = "url('img/녹야.png')";
-  };
-
-  // 데스크탑 hover
-  [group, board].forEach((el) => {
-    el.addEventListener("mouseenter", on);
-    el.addEventListener("mouseleave", off);
-  });
-
-  // ✅ 모바일: 탭 토글
+  // ✅ 모바일에서만 "탭 토글" 필요 (데스크탑은 CSS :hover가 처리)
   const isTouch =
     window.matchMedia && window.matchMedia("(hover: none)").matches;
-  if (isTouch) {
-    let active = false;
-    const toggle = (e) => {
-      e.preventDefault?.();
-      active = !active;
-      active ? on() : off();
-    };
 
-    [group, board].forEach((el) => {
-      el.addEventListener("click", toggle, { passive: false });
-      el.addEventListener("touchstart", toggle, { passive: false });
-    });
+  if (!isTouch) return;
 
-    document.addEventListener(
-      "touchstart",
-      (e) => {
-        if (!group.contains(e.target) && !board.contains(e.target)) {
-          active = false;
-          off();
-        }
-      },
-      { passive: true },
-    );
-  }
+  let nokyaActive = false;
+  let lalaActive = false;
+
+  const nokyaOn = () => {
+    group.classList.add("is-active");
+    board.classList.add("is-shaking");
+  };
+  const nokyaOff = () => {
+    group.classList.remove("is-active");
+    board.classList.remove("is-shaking");
+  };
+
+  const lalaOn = () => {
+    lala.classList.add("is-active");
+  };
+  const lalaOff = () => {
+    lala.classList.remove("is-active");
+  };
+
+  const toggleNokya = (e) => {
+    e.preventDefault?.();
+    nokyaActive = !nokyaActive;
+    nokyaActive ? nokyaOn() : nokyaOff();
+  };
+
+  const toggleLala = (e) => {
+    e.preventDefault?.();
+    lalaActive = !lalaActive;
+    lalaActive ? lalaOn() : lalaOff();
+  };
+
+  // ✅ 녹야/게시판 탭 토글
+  [group, board].forEach((el) => {
+    el.addEventListener("click", toggleNokya, { passive: false });
+    el.addEventListener("touchstart", toggleNokya, { passive: false });
+  });
+
+  // ✅ 라라 탭 토글
+  lala.addEventListener("click", toggleLala, { passive: false });
+  lala.addEventListener("touchstart", toggleLala, { passive: false });
+
+  // ✅ 바깥 터치하면 해제
+  document.addEventListener(
+    "touchstart",
+    (e) => {
+      if (!group.contains(e.target) && !board.contains(e.target)) {
+        nokyaActive = false;
+        nokyaOff();
+      }
+      if (!lala.contains(e.target)) {
+        lalaActive = false;
+        lalaOff();
+      }
+    },
+    { passive: true },
+  );
 }

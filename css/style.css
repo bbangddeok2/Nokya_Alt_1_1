@@ -72,13 +72,6 @@ body {
   display: inline-block;
 }
 
-/* ✅ 엘베 + 버튼 묶음 */
-.elevator-row {
-  display: flex;
-  align-items: center;
-  gap: 40px; /* 데스크탑은 원래 margin-left 느낌 유지 */
-}
-
 .elevator-outer {
   display: flex;
   flex-direction: column;
@@ -253,6 +246,13 @@ body {
   bottom: 16%;
   left: 63%;
   background-image: url("../img/라라.png");
+  cursor: pointer;
+
+  /* ✅ hover 이미지 프레이밍 안정화 */
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: contain;
+  /* transition: 0.2s; */
 }
 .hwi {
   width: 20%;
@@ -272,6 +272,7 @@ body {
   cursor: pointer;
 }
 
+/* ✅ 녹야 기본(이제 JS가 아니라 CSS가 바꿈) */
 .nockya-main {
   width: 100%;
   height: 100%;
@@ -290,14 +291,61 @@ body {
   pointer-events: none;
 }
 
-.board.is-shaking {
-  animation: shake 0.6s infinite;
+/* =========================
+   HOVER (CSS로 처리)
+   - 데스크탑: :hover
+   - 모바일: JS가 class 토글(.is-active)만
+========================= */
+
+/* ✅ 녹야: 그룹 hover 시 이미지 변경 */
+#nockyaGroup:hover .nockya-main {
+  background-image: url("../img/녹야_호버.png");
 }
-.is-active .bubble {
+/* ✅ 게시판 hover 시에도 녹야 변경 (board가 group보다 앞이라 ~ 가능) */
+#board:hover ~ #nockyaGroup .nockya-main {
+  background-image: url("../img/녹야_호버.png");
+}
+
+/* ✅ 말풍선: 그룹 hover 또는 게시판 hover */
+#nockyaGroup:hover .bubble,
+#board:hover ~ #nockyaGroup .bubble {
   opacity: 1;
   animation: float 2s infinite;
 }
 
+/* ✅ 게시판 흔들림: 게시판 hover */
+#board:hover {
+  animation: shake 0.6s infinite;
+}
+
+/* ✅ (중요) 녹야 hover 중에도 게시판 흔들리게: :has 사용 (크롬 최신 OK) */
+.studio-container:has(#nockyaGroup:hover) #board {
+  animation: shake 0.6s infinite;
+}
+
+/* ✅ 라라 hover 시 이미지 변경 */
+.lala:hover {
+  background-image: url("../img/라라_호버.png");
+}
+
+/* ===== 모바일 탭 토글용 (JS가 클래스만 붙임) ===== */
+#nockyaGroup.is-active .nockya-main {
+  background-image: url("../img/녹야_호버.png");
+}
+#nockyaGroup.is-active .bubble {
+  opacity: 1;
+  animation: float 2s infinite;
+}
+.board.is-shaking {
+  animation: shake 0.6s infinite;
+}
+.lala.is-active {
+  background-image: url("../img/라라_호버.png");
+}
+
+/* =========================
+   ANIMATION
+========================= */
 @keyframes blink {
   from {
     opacity: 1;
@@ -338,35 +386,58 @@ body {
 
 /* =========================
    MOBILE (<=767)
-   - floor guide는 위
-   - 버튼은 엘베 우측 (elevator-row flex)
-   - 메인 배경 모바일바닥 + 재배치
+   - intro는 grid로 잘림 방지
+   - main 배경 모바일바닥 + 재배치
 ========================= */
 @media (max-width: 767px) {
+  #app {
+    height: 100dvh;
+  }
+
   #intro-wrap {
-    flex-direction: column;
-    gap: 14px;
+    height: 100dvh;
+    max-height: 100dvh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "guide guide"
+      "elev  panel";
+    gap: 14px 12px;
+    align-content: start;
+    justify-content: center;
     padding: 16px;
   }
 
-  /* 플로어 가이드: 엘베 위 */
   .floor-guide {
+    grid-area: guide;
     position: relative;
     left: auto;
     top: auto;
     margin: 0;
     transform: rotate(-1deg);
     width: min(92vw, 340px);
+    justify-self: center;
   }
 
-  /* 엘베 + 버튼은 같은 줄 */
-  .elevator-row {
-    gap: 12px;
+  .elevator-outer {
+    grid-area: elev;
+    justify-self: center;
+  }
+
+  .control-panel {
+    grid-area: panel;
+    position: relative;
+    align-self: center;
+    justify-self: start;
+    margin: 0;
   }
 
   .elevator-box {
     width: min(76vw, 290px);
-    height: min(56vh, 420px);
+    height: min(52dvh, 420px);
   }
 
   .floor-display {
@@ -380,12 +451,13 @@ body {
     height: 54px;
     font-size: 22px;
   }
+
   .click-guide {
     top: -26px;
     font-size: 12px;
   }
 
-  /* MAIN: 배경 교체 + 씬 재배치 */
+  /* MAIN: 배경 교체 */
   .studio-container {
     background: url("../img/모바일바닥.png") no-repeat center bottom !important;
     background-size: 100% 100% !important;
@@ -459,45 +531,8 @@ body {
     bottom: 10vh !important;
   }
 }
-/* =========================
-   MOBILE RESPONSIVE SEGMENTS
-   767px 기준의 이상적 배치를 전 구간 유지
-========================= */
 
-/* 공통 모바일 설정 */
-@media (max-width: 767px) {
-  #intro-wrap {
-    flex-direction: column;
-    gap: 14px;
-    padding: 16px;
-  }
-  .floor-guide {
-    position: relative;
-    left: auto;
-    top: auto;
-    margin: 0;
-    transform: rotate(-1deg);
-    width: min(92vw, 340px);
-  }
-  .elevator-row {
-    gap: 12px;
-  }
-  .elevator-box {
-    width: min(76vw, 290px);
-    height: min(56vh, 420px);
-  }
-  .studio-container {
-    background: url("../img/모바일바닥.png") no-repeat center bottom !important;
-    background-size: 100% 100% !important;
-  }
-  .obj,
-  .nockya-group {
-    position: absolute !important;
-    transform: none !important;
-  }
-}
-
-/* 1구간: 767px ~ 700px (사용자님 원본 기준) */
+/* 1구간: 767 ~ 700 */
 @media (max-width: 767px) and (min-width: 700px) {
   .board {
     width: 60vw !important;
@@ -544,9 +579,7 @@ body {
   }
 }
 
-/* =========================================================
-   699~600 : 767 기준 느낌 유지 (약간만 축소)
-========================================================= */
+/* 699 ~ 600 */
 @media (max-width: 699px) and (min-width: 600px) {
   .board {
     width: 62vw !important;
@@ -560,7 +593,6 @@ body {
     top: 10vh !important;
     left: 6vw !important;
   }
-
   .nockya-group {
     width: 35vw !important;
     height: 20vh !important;
@@ -572,8 +604,6 @@ body {
     top: 40vh !important;
     left: 6vw !important;
   }
-
-  /* ✅ 루루(서류함) / 라라(카메라) : 화면이 좁아질수록 살짝 안쪽으로 */
   .lulu {
     width: 50% !important;
     height: 19% !important;
@@ -586,7 +616,6 @@ body {
     bottom: 18% !important;
     left: 10% !important;
   }
-
   .hwi {
     width: 49vw !important;
     height: 23vh !important;
@@ -595,11 +624,8 @@ body {
   }
 }
 
-/* =========================================================
-   599~500 : 767 기준 느낌 유지 (한 단계 더 축소)
-========================================================= */
+/* 599 ~ 500 */
 @media (max-width: 599px) and (min-width: 500px) {
-  /* 폭 줄면 vw 기반 오브제들이 커 보이니까 %로 조금 더 눌러줌 */
   .board {
     width: 64vw !important;
     height: 19vh !important;
@@ -612,7 +638,6 @@ body {
     top: 10vh !important;
     left: 5vw !important;
   }
-
   .nockya-group {
     width: 36vw !important;
     height: 19vh !important;
@@ -624,7 +649,6 @@ body {
     top: 40vh !important;
     left: 5vw !important;
   }
-
   .lulu {
     width: 50% !important;
     height: 19% !important;
@@ -637,7 +661,6 @@ body {
     bottom: 18% !important;
     left: 9% !important;
   }
-
   .hwi {
     width: 49vw !important;
     height: 23vh !important;
@@ -646,9 +669,7 @@ body {
   }
 }
 
-/* =========================================================
-   499~400 : 767 기준 느낌 유지 (작은 폰 / 요소 겹침 방지)
-========================================================= */
+/* 499 ~ 400 */
 @media (max-width: 499px) and (min-width: 400px) {
   .board {
     width: 66vw !important;
@@ -662,7 +683,6 @@ body {
     top: 10vh !important;
     left: 4vw !important;
   }
-
   .nockya-group {
     width: 38vw !important;
     height: 18.5vh !important;
@@ -674,7 +694,6 @@ body {
     top: 40vh !important;
     left: 4vw !important;
   }
-
   .lulu {
     width: 50% !important;
     height: 19% !important;
@@ -687,7 +706,6 @@ body {
     bottom: 18% !important;
     left: 8% !important;
   }
-
   .hwi {
     width: 49vw !important;
     height: 23vh !important;
@@ -696,9 +714,7 @@ body {
   }
 }
 
-/* =========================================================
-   399~ : 초소형 (겹침 최소 / 전체 살짝 더 축소)
-========================================================= */
+/* 399 이하 */
 @media (max-width: 399px) {
   .board {
     width: 68vw !important;
@@ -712,7 +728,6 @@ body {
     top: 10vh !important;
     left: 3vw !important;
   }
-
   .nockya-group {
     width: 40vw !important;
     height: 18vh !important;
@@ -724,7 +739,6 @@ body {
     top: 40vh !important;
     left: 3vw !important;
   }
-
   .lulu {
     width: 50% !important;
     height: 19% !important;
@@ -737,109 +751,10 @@ body {
     bottom: 18% !important;
     left: 7% !important;
   }
-
   .hwi {
     width: 49vw !important;
     height: 23vh !important;
     right: 2.5vw !important;
     bottom: 8.5vh !important;
-  }
-}
-@media (max-width: 767px) {
-  #intro-wrap {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  /* 플로어 가이드는 맨 위 */
-  .floor-guide {
-    order: 1;
-    margin-bottom: 12px;
-  }
-
-  /* 엘베 + 버튼을 한 줄처럼 */
-  .elevator-outer {
-    order: 2;
-  }
-
-  .control-panel {
-    order: 3;
-    margin-top: -260px; /* 엘베 세로 중앙쯤 */
-    margin-left: 370px; /* 엘베 우측으로 이동 */
-  }
-}
-@media (max-width: 767px) {
-  /* 모바일에서 주소창/툴바 때문에 vh가 흔들려서 dvh 권장 */
-  #app {
-    height: 100dvh;
-  }
-
-  #intro-wrap {
-    /* 핵심: 잘림 방지 */
-    height: 100dvh;
-    max-height: 100dvh;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-
-    /* 레이아웃을 grid로 고정 */
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-      "guide guide"
-      "elev  panel";
-    gap: 14px 12px;
-    align-content: start;
-    justify-content: center;
-    padding: 16px;
-  }
-
-  /* 플로어 가이드: 맨 위 한줄 전체 */
-  .floor-guide {
-    grid-area: guide;
-    position: relative;
-    left: auto;
-    top: auto;
-    margin: 0;
-    transform: rotate(-1deg);
-    width: min(92vw, 340px);
-    justify-self: center;
-  }
-
-  /* 엘베 영역 */
-  .elevator-outer {
-    grid-area: elev;
-    justify-self: center;
-  }
-
-  /* 버튼(컨트롤) 영역: 엘베 우측 고정 */
-  .control-panel {
-    grid-area: panel;
-    position: relative; /* 기존 유지 */
-    align-self: center;
-    justify-self: start;
-    margin: 0; /* 중요: 기존 margin 억지이동 제거 */
-  }
-
-  .elevator-box {
-    /* 너무 커서 아래 잘리는 케이스 방지 */
-    width: min(76vw, 290px);
-    height: min(52dvh, 420px);
-  }
-
-  .floor-display {
-    font-size: 18px;
-    padding: 5px 16px;
-    margin-bottom: 10px;
-  }
-
-  .up-button {
-    width: 54px;
-    height: 54px;
-    font-size: 22px;
-  }
-
-  .click-guide {
-    top: -26px;
-    font-size: 12px;
   }
 }
